@@ -1,0 +1,53 @@
+{
+  "name": "big-ts",
+  "version": "0.1.0",
+  "description": "Arbitrary-precision arithmetic library in TypeScript using functional and immutable principles.",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/Big.js",
+  "types": "dist/Big.d.ts",
+  "typings": "dist/Big.d.ts",
+  "scripts": {
+    "jest-clear-cache": "jest --clearCache",
+    "jest": "jest --ci",
+    "lint": "eslint . --ext .ts",
+    "prettier": "prettier --list-different \"./{src,test}/**/*.ts\"",
+    "fix-prettier": "prettier --write \"./{src,test}/**/*.ts\"",
+    "test": "npm run lint && npm run prettier && npm run jest-clear-cache && npm run jest && npm run docs",
+    "clean": "rimraf dist/*",
+    "prebuild": "npm run clean",
+    "build": "tsc -p ./tsconfig.build.json",
+    "postbuild": "prettier --write \"./dist/**/*.ts\"",
+    "prepublish": "npm run build",
+    "docs": "docs-ts"
+  },
+  "author": "Adam Meier",
+  "license": "MIT",
+  "homepage": "https://github.com/adameier/big-ts",
+  "devDependencies": {
+    "@types/jest": "^26.0.10",
+    "@typescript-eslint/eslint-plugin": "^4.0.1",
+    "@typescript-eslint/parser": "^4.0.1",
+    "docs-ts": "^0.5.1",
+    "eslint": "^7.8.1",
+    "fp-ts": "^2.8.1",
+    "jest": "^26.4.0",
+    "prettier": "^2.1.1",
+    "ts-jest": "^26.2.0",
+    "typescript": "^3.9.7"
+  },
+  "peerDependencies": {
+    "fp-ts": "^2.0.0"
+  },
+  "tags": [
+    "typescript",
+    "arbitrary-precision",
+    "big"
+  ],
+  "keywords": [
+    "typescript",
+    "arbitrary-precision",
+    "big"
+  ]
+}
