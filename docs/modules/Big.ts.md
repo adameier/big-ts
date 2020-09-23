@@ -12,16 +12,6 @@ Added in v0.1.0
 
 <h2 class="text-delta">Table of contents</h2>
 
-- [combinators](#combinators)
-  - [abs](#abs)
-  - [add](#add)
-  - [div](#div)
-  - [mod](#mod)
-  - [mult](#mult)
-  - [pow](#pow)
-  - [round](#round)
-  - [sqrt](#sqrt)
-  - [sub](#sub)
 - [constructors](#constructors)
   - [copy](#copy)
   - [parse](#parse)
@@ -43,124 +33,22 @@ Added in v0.1.0
   - [PrecisionOptions (interface)](#precisionoptions-interface)
   - [RoundingOptions (interface)](#roundingoptions-interface)
   - [Sign (type alias)](#sign-type-alias)
+- [operators](#operators)
+  - [abs](#abs)
+  - [add](#add)
+  - [div](#div)
+  - [mod](#mod)
+  - [mult](#mult)
+  - [pow](#pow)
+  - [round](#round)
+  - [sqrt](#sqrt)
+  - [sub](#sub)
 - [utils](#utils)
   - [cmp](#cmp)
   - [constOne](#constone)
   - [constZero](#constzero)
 
 ---
-
-# combinators
-
-## abs
-
-Return the absolute value of a Big as a new Big.
-
-**Signature**
-
-```ts
-export declare function abs(x: Big): Big
-```
-
-Added in v0.1.0
-
-## add
-
-Add one Big with another and return the result as a Big
-
-**Signature**
-
-```ts
-export declare function add(y: Big): (x: Big) => Big
-```
-
-Added in v0.1.0
-
-## div
-
-Divide one Big's value by another's and return the result as a Big.
-
-**Signature**
-
-```ts
-export declare function div(y: Big, ro: Partial<RoundingOptions> = {}): (x: Big) => Big
-```
-
-Added in v0.1.0
-
-## mod
-
-Return one Big's value modulo the value of another Big as a Big.
-
-**Signature**
-
-```ts
-export declare function mod(y: Big): (x: Big) => Big
-```
-
-Added in v0.1.0
-
-## mult
-
-Multiply one Big's value by another's and return the result as a Big.
-
-**Signature**
-
-```ts
-export declare function mult(y: Big): (x: Big) => Big
-```
-
-Added in v0.1.0
-
-## pow
-
-Return the value of a Big raised to the power n as a Big.
-
-If n is negative, round using provided `RoundingOptions`.
-
-**Signature**
-
-```ts
-export declare function pow(n: number, ro: Partial<RoundingOptions> = {}): (x: Big) => Big
-```
-
-Added in v0.1.0
-
-## round
-
-Round the value of a Big using the provided `RoundingOptions` and returns the result as a Big.
-
-**Signature**
-
-```ts
-export declare function round(ro: RoundingOptions): (x: Big) => Big
-```
-
-Added in v0.1.0
-
-## sqrt
-
-Return the square root of a Big's value as a Big, rounding using provided `RoundingOptions`.
-
-**Signature**
-
-```ts
-export declare function sqrt(ro: Partial<RoundingOptions> = {}): (x: Big) => Big
-```
-
-Added in v0.1.0
-
-## sub
-
-Subtract one Big from another and return the result as a Big.
-
-**Signature**
-
-```ts
-export declare function sub(y: Big): (x: Big) => Big
-```
-
-Added in v0.1.0
 
 # constructors
 
@@ -379,6 +267,118 @@ Added in v0.1.0
 
 ```ts
 export type Sign = -1 | 1
+```
+
+Added in v0.1.0
+
+# operators
+
+## abs
+
+Return the absolute value of a Big as a new Big.
+
+**Signature**
+
+```ts
+export declare function abs(x: Big): Big
+```
+
+Added in v0.1.0
+
+## add
+
+Add one Big with another and return the result as a Big
+
+**Signature**
+
+```ts
+export declare function add(y: Big): (x: Big) => Big
+```
+
+Added in v0.1.0
+
+## div
+
+Divide one Big's value by another's and return the result as a Big.
+
+**Signature**
+
+```ts
+export declare function div(y: Big, ro: Partial<RoundingOptions> = {}): (x: Big) => Big
+```
+
+Added in v0.1.0
+
+## mod
+
+Return one Big's value modulo the value of another Big as a Big.
+
+**Signature**
+
+```ts
+export declare function mod(y: Big): (x: Big) => Big
+```
+
+Added in v0.1.0
+
+## mult
+
+Multiply one Big's value by another's and return the result as a Big.
+
+**Signature**
+
+```ts
+export declare function mult(y: Big): (x: Big) => Big
+```
+
+Added in v0.1.0
+
+## pow
+
+Return the value of a Big raised to the power n as a Big.
+
+If n is negative, round using provided `RoundingOptions`.
+
+**Signature**
+
+```ts
+export declare function pow(n: number, ro: Partial<RoundingOptions> = {}): (x: Big) => Big
+```
+
+Added in v0.1.0
+
+## round
+
+Round the value of a Big using the provided `RoundingOptions` and returns the result as a Big.
+
+**Signature**
+
+```ts
+export declare function round(ro: RoundingOptions): (x: Big) => Big
+```
+
+Added in v0.1.0
+
+## sqrt
+
+Return the square root of a Big's value as a Big, rounding using provided `RoundingOptions`.
+
+**Signature**
+
+```ts
+export declare function sqrt(ro: Partial<RoundingOptions> = {}): (x: Big) => Big
+```
+
+Added in v0.1.0
+
+## sub
+
+Subtract one Big from another and return the result as a Big.
+
+**Signature**
+
+```ts
+export declare function sub(y: Big): (x: Big) => Big
 ```
 
 Added in v0.1.0
