@@ -127,7 +127,7 @@ export function parse(n: number | string): Big {
   let nl = ns.length
 
   // Determine leading zeros.
-  for (i = 0; i < nl && ns.charAt(i) == '0'; ) ++i
+  for (i = 0; i < nl && ns.charAt(i) == '0';) ++i
 
   let xc: Digit[]
   let xe: number
@@ -138,12 +138,12 @@ export function parse(n: number | string): Big {
     xe = 0
   } else {
     // Determine trailing zeros.
-    for (; nl > 0 && ns.charAt(--nl) == '0'; );
+    for (; nl > 0 && ns.charAt(--nl) == '0';);
     xe = e1 - i - 1
     xc = []
 
     // Convert string to array of digits without leading/trailing zeros.
-    for (e1 = 0; i <= nl; ) xc[e1++] = +ns.charAt(i++) as Digit
+    for (e1 = 0; i <= nl;) xc[e1++] = +ns.charAt(i++) as Digit
   }
 
   return {
@@ -203,7 +203,7 @@ export function cmp(x: Big, y: Big): -1 | 0 | 1 {
   const j = k < l ? k : l
 
   // Compare digit by digit.
-  for (let i = -1; ++i < j; ) {
+  for (let i = -1; ++i < j;) {
     if (x.c[i] != y.c[i]) return x.c[i] > y.c[i] !== isneg ? 1 : -1
   }
 
@@ -251,7 +251,7 @@ function _round(dp: number, rm: RoundingMode = 1, more = false): (x: Big) => Big
         // Round up?
         if (more) {
           // Rounding up may mean the previous digit has to be rounded up.
-          for (; ++c[i] > 9; ) {
+          for (; ++c[i] > 9;) {
             c[i] = 0
             if (!i--) {
               ++e
@@ -261,7 +261,7 @@ function _round(dp: number, rm: RoundingMode = 1, more = false): (x: Big) => Big
         }
 
         // Remove trailing zeros.
-        for (i = c.length; !c[--i]; ) c.pop()
+        for (i = c.length; !c[--i];) c.pop()
       }
     }
 
@@ -277,7 +277,7 @@ function _round(dp: number, rm: RoundingMode = 1, more = false): (x: Big) => Big
 /**
  * Round the value of a Big using the provided `RoundingOptions` and returns the result as a Big.
  *
- * @category combinators
+ * @category operators
  * @since 0.1.0
  */
 export function round(ro: RoundingOptions): (x: Big) => Big {
@@ -287,7 +287,7 @@ export function round(ro: RoundingOptions): (x: Big) => Big {
 /**
  * Return the absolute value of a Big as a new Big.
  *
- * @category combinators
+ * @category operators
  * @since 0.1.0
  */
 export function abs(x: Big): Big {
@@ -302,7 +302,7 @@ export function abs(x: Big): Big {
 /**
  * Divide one Big's value by another's and return the result as a Big.
  *
- * @category combinators
+ * @category operators
  * @since 0.1.0
  */
 export function div(y: Big, ro: Partial<RoundingOptions> = {}): (x: Big) => Big {
@@ -343,7 +343,7 @@ export function div(y: Big, ro: Partial<RoundingOptions> = {}): (x: Big) => Big 
     bz.unshift(0)
 
     // Add zeros to make remainder as long as divisor.
-    for (; rl++ < bl; ) r.push(0)
+    for (; rl++ < bl;) r.push(0)
 
     do {
       // n is how many times the divisor goes into current remainder.
@@ -352,7 +352,7 @@ export function div(y: Big, ro: Partial<RoundingOptions> = {}): (x: Big) => Big 
         if (bl != (rl = r.length)) {
           cmp = bl > rl ? 1 : -1
         } else {
-          for (ri = -1, cmp = 0; ++ri < bl; ) {
+          for (ri = -1, cmp = 0; ++ri < bl;) {
             if (b[ri] != r[ri]) {
               cmp = b[ri] > r[ri] ? 1 : -1
               break
@@ -364,17 +364,17 @@ export function div(y: Big, ro: Partial<RoundingOptions> = {}): (x: Big) => Big 
         if (cmp < 0) {
           // Remainder can't be more than 1 digit longer than divisor.
           // Equalise lengths using divisor with extra leading zero?
-          for (bt = rl == bl ? b : bz; rl; ) {
+          for (bt = rl == bl ? b : bz; rl;) {
             if (r[--rl] < bt[rl]) {
               ri = rl
-              for (; ri && !r[--ri]; ) r[ri] = 9
+              for (; ri && !r[--ri];) r[ri] = 9
               --r[ri]
               r[rl] += 10
             }
             r[rl] -= bt[rl]
           }
 
-          for (; !r[0]; ) r.shift()
+          for (; !r[0];) r.shift()
         } else {
           break
         }
@@ -412,7 +412,7 @@ export function div(y: Big, ro: Partial<RoundingOptions> = {}): (x: Big) => Big 
 /**
  * Add one Big with another and return the result as a Big
  *
- * @category combinators
+ * @category operators
  * @since 0.1.0
  */
 export function add(y: Big): (x: Big) => Big {
@@ -447,7 +447,7 @@ export function add(y: Big): (x: Big) => Big {
       }
 
       t.reverse()
-      for (; a--; ) t.push(0)
+      for (; a--;) t.push(0)
       t.reverse()
     }
 
@@ -471,7 +471,7 @@ export function add(y: Big): (x: Big) => Big {
     }
 
     // Remove trailing zeros.
-    for (a = xc.length; xc[--a] === 0; ) xc.pop()
+    for (a = xc.length; xc[--a] === 0;) xc.pop()
 
     return {
       _tag: 'Big',
@@ -485,7 +485,7 @@ export function add(y: Big): (x: Big) => Big {
 /**
  * Subtract one Big from another and return the result as a Big.
  *
- * @category combinators
+ * @category operators
  * @since 0.1.0
  */
 export function sub(y: Big): (x: Big) => Big {
@@ -524,7 +524,7 @@ export function sub(y: Big): (x: Big) => Big {
       }
 
       t.reverse()
-      for (b = a; b--; ) t.push(0)
+      for (b = a; b--;) t.push(0)
       t.reverse()
     } else {
       xlty = xc.length < yc.length
@@ -553,12 +553,12 @@ export function sub(y: Big): (x: Big) => Big {
      * Append zeros to xc if shorter. No need to add zeros to zc if shorter as subtraction only
      * needs to start at zc.length.
      */
-    if ((b = j - i) > 0) for (; b--; ) xc[i++] = 0
+    if ((b = j - i) > 0) for (; b--;) xc[i++] = 0
 
     // Subtract zc from xc.
-    for (b = i; j > a; ) {
+    for (b = i; j > a;) {
       if (xc[--j] < yc[j]) {
-        for (i = j; i && !xc[--i]; ) xc[i] = 9
+        for (i = j; i && !xc[--i];) xc[i] = 9
         --xc[i]
         xc[j] += 10
       }
@@ -567,10 +567,10 @@ export function sub(y: Big): (x: Big) => Big {
     }
 
     // Remove trailing zeros.
-    for (; xc[--b] === 0; ) xc.pop()
+    for (; xc[--b] === 0;) xc.pop()
 
     // Remove leading zeros and adjust exponent accordingly.
-    for (; xc[0] === 0; ) {
+    for (; xc[0] === 0;) {
       xc.shift()
       --ze
     }
@@ -595,7 +595,7 @@ export function sub(y: Big): (x: Big) => Big {
 /**
  * Multiply one Big's value by another's and return the result as a Big.
  *
- * @category combinators
+ * @category operators
  * @since 0.1.0
  */
 export function mult(y: Big): (x: Big) => Big {
@@ -628,16 +628,16 @@ export function mult(y: Big): (x: Big) => Big {
     }
 
     // Initialise coefficient array of result with zeros.
-    for (c = new Array((j = a + b)); j--; ) c[j] = 0
+    for (c = new Array((j = a + b)); j--;) c[j] = 0
 
     // Multiply.
 
     // i is initially xc.length.
-    for (i = b; i--; ) {
+    for (i = b; i--;) {
       b = 0
 
       // a is yc.length.
-      for (j = a + i; j > i; ) {
+      for (j = a + i; j > i;) {
         // Current sum of products at this digit position, plus carry.
         b = c[j] + zc[i] * xc[j - i - 1] + b
         c[j--] = (b % 10) as Digit
@@ -654,7 +654,7 @@ export function mult(y: Big): (x: Big) => Big {
     else c.shift()
 
     // Remove trailing zeros.
-    for (i = c.length; !c[--i]; ) c.pop()
+    for (i = c.length; !c[--i];) c.pop()
     zc = c
 
     return {
@@ -669,7 +669,7 @@ export function mult(y: Big): (x: Big) => Big {
 /**
  * Return one Big's value modulo the value of another Big as a Big.
  *
- * @category combinators
+ * @category operators
  * @since 0.1.0
  */
 export function mod(y: Big): (x: Big) => Big {
@@ -688,7 +688,7 @@ export function mod(y: Big): (x: Big) => Big {
  *
  * If n is negative, round using provided `RoundingOptions`.
  *
- * @category combinators
+ * @category operators
  * @since 0.1.0
  */
 export function pow(n: number, ro: Partial<RoundingOptions> = {}): (x: Big) => Big {
@@ -701,7 +701,7 @@ export function pow(n: number, ro: Partial<RoundingOptions> = {}): (x: Big) => B
     if (n !== ~~n || n < -MAX_POWER || n > MAX_POWER) throw Error('Invalid exponent.')
     if (isneg) n = -n
 
-    for (;;) {
+    for (; ;) {
       if (n & 1) y = mult(z)(y)
       n >>= 1
       if (!n) break
@@ -715,7 +715,7 @@ export function pow(n: number, ro: Partial<RoundingOptions> = {}): (x: Big) => B
 /**
  * Return the square root of a Big's value as a Big, rounding using provided `RoundingOptions`.
  *
- * @category combinators
+ * @category operators
  * @since 0.1.0
  */
 export function sqrt(ro: Partial<RoundingOptions> = {}): (x: Big) => Big {
@@ -810,7 +810,7 @@ function _stringify(
 
     zc = [..._x.c]
     // Append zeros?
-    for (; zc.length < _k; ) zc.push(0)
+    for (; zc.length < _k;) zc.push(0)
   } else {
     zc = [...x.c]
   }
@@ -825,10 +825,10 @@ function _stringify(
 
     // Normal notation.
   } else if (e < 0) {
-    for (; ++e; ) s = '0' + s
+    for (; ++e;) s = '0' + s
     s = '0.' + s
   } else if (e > 0) {
-    if (++e > sl) for (e -= sl; e--; ) s += '0'
+    if (++e > sl) for (e -= sl; e--;) s += '0'
     else if (e < sl) s = s.slice(0, e) + '.' + s.slice(e)
   } else if (sl > 1) {
     s = s.charAt(0) + '.' + s.slice(1)
